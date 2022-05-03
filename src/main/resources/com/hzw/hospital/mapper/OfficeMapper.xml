@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzw.hospital.mapper.OfficeMapper" >
+  <resultMap id="BaseResultMap" type="com.hzw.hospital.bean.Office" >
+    <id column="O_id" property="oId" jdbcType="INTEGER" />
+    <result column="O_name" property="oName" jdbcType="VARCHAR" />
+    <result column="O_des" property="oDes" jdbcType="VARCHAR" />
+    <result column="O_site" property="oSite" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from office
+    where O_id = #{oId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzw.hospital.bean.Office" >
+    insert into office (O_id, O_name, O_des, 
+      O_site)
+    values (#{oId,jdbcType=INTEGER}, #{oName,jdbcType=VARCHAR}, #{oDes,jdbcType=VARCHAR}, 
+      #{oSite,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hzw.hospital.bean.Office" >
+    update office
+    set O_name = #{oName,jdbcType=VARCHAR},
+      O_des = #{oDes,jdbcType=VARCHAR},
+      O_site = #{oSite,jdbcType=VARCHAR}
+    where O_id = #{oId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select O_id, O_name, O_des, O_site
+    from office
+    where O_id = #{oId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select O_id, O_name, O_des, O_site
+    from office
+  </select>
+</mapper>

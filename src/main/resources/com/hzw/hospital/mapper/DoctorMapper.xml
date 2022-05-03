@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzw.hospital.mapper.DoctorMapper" >
+  <resultMap id="BaseResultMap" type="com.hzw.hospital.bean.Doctor" >
+    <id column="D_id" property="dId" jdbcType="INTEGER" />
+    <result column="D_username" property="dUsername" jdbcType="VARCHAR" />
+    <result column="D_pwd" property="dPwd" jdbcType="VARCHAR" />
+    <result column="D_name" property="dName" jdbcType="VARCHAR" />
+    <result column="D_age" property="dAge" jdbcType="INTEGER" />
+    <result column="D_sex" property="dSex" jdbcType="VARCHAR" />
+    <result column="SUR_id" property="surId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from doctor
+    where D_id = #{dId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzw.hospital.bean.Doctor" >
+    insert into doctor (D_id, D_username, D_pwd, 
+      D_name, D_age, D_sex, 
+      SUR_id)
+    values (#{dId,jdbcType=INTEGER}, #{dUsername,jdbcType=VARCHAR}, #{dPwd,jdbcType=VARCHAR}, 
+      #{dName,jdbcType=VARCHAR}, #{dAge,jdbcType=INTEGER}, #{dSex,jdbcType=VARCHAR}, 
+      #{surId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hzw.hospital.bean.Doctor" >
+    update doctor
+    set D_username = #{dUsername,jdbcType=VARCHAR},
+      D_pwd = #{dPwd,jdbcType=VARCHAR},
+      D_name = #{dName,jdbcType=VARCHAR},
+      D_age = #{dAge,jdbcType=INTEGER},
+      D_sex = #{dSex,jdbcType=VARCHAR},
+      SUR_id = #{surId,jdbcType=INTEGER}
+    where D_id = #{dId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select D_id, D_username, D_pwd, D_name, D_age, D_sex, SUR_id
+    from doctor
+    where D_id = #{dId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select D_id, D_username, D_pwd, D_name, D_age, D_sex, SUR_id
+    from doctor
+  </select>
+</mapper>

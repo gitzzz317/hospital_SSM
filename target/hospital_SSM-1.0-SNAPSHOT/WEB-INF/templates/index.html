@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script type="text/javascript" th:src="@{/static/js/jquery-3.6.0.min.js}"></script>
+    <link th:href="@{/static/bootstrap-3.4.1-dist/css/bootstrap.min.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/static/bootstrap-3.4.1-dist/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            首页
+            <form th:action="@{/interview}" method="post">
+                pId<input type="text" name="pId">
+                iDate<input type="date" name="iDate">
+                iTime<input type="text" name="iTime">
+                dId<input type="text" name="dId">
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

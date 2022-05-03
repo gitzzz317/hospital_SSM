@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzw.hospital.mapper.SchMapper" >
+  <resultMap id="BaseResultMap" type="com.hzw.hospital.bean.Sch" >
+    <id column="SCH_id" property="schId" jdbcType="INTEGER" />
+    <result column="D_id" property="dId" jdbcType="INTEGER" />
+    <result column="SUR_id" property="surId" jdbcType="INTEGER" />
+    <result column="SCH_date" property="schDate" jdbcType="DATE" />
+    <result column="SCH_time" property="schTime" jdbcType="CHAR" />
+    <result column="SCH_size" property="schSize" jdbcType="INTEGER" />
+    <result column="SCH_booked" property="schBooked" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sch
+    where SCH_id = #{schId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzw.hospital.bean.Sch" >
+    insert into sch (SCH_id, D_id, SUR_id, 
+      SCH_date, SCH_time, SCH_size, 
+      SCH_booked)
+    values (#{schId,jdbcType=INTEGER}, #{dId,jdbcType=INTEGER}, #{surId,jdbcType=INTEGER}, 
+      #{schDate,jdbcType=DATE}, #{schTime,jdbcType=CHAR}, #{schSize,jdbcType=INTEGER}, 
+      #{schBooked,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hzw.hospital.bean.Sch" >
+    update sch
+    set D_id = #{dId,jdbcType=INTEGER},
+      SUR_id = #{surId,jdbcType=INTEGER},
+      SCH_date = #{schDate,jdbcType=DATE},
+      SCH_time = #{schTime,jdbcType=CHAR},
+      SCH_size = #{schSize,jdbcType=INTEGER},
+      SCH_booked = #{schBooked,jdbcType=INTEGER}
+    where SCH_id = #{schId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select SCH_id, D_id, SUR_id, SCH_date, SCH_time, SCH_size, SCH_booked
+    from sch
+    where SCH_id = #{schId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select SCH_id, D_id, SUR_id, SCH_date, SCH_time, SCH_size, SCH_booked
+    from sch
+  </select>
+</mapper>

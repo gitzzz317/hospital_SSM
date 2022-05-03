@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzw.hospital.mapper.PatientMapper" >
+  <resultMap id="BaseResultMap" type="com.hzw.hospital.bean.Patient" >
+    <id column="P_id" property="pId" jdbcType="INTEGER" />
+    <result column="P_username" property="pUsername" jdbcType="VARCHAR" />
+    <result column="P_pwd" property="pPwd" jdbcType="VARCHAR" />
+    <result column="P_name" property="pName" jdbcType="VARCHAR" />
+    <result column="P_sex" property="pSex" jdbcType="VARCHAR" />
+    <result column="P_age" property="pAge" jdbcType="INTEGER" />
+    <result column="P_num" property="pNum" jdbcType="CHAR" />
+    <result column="P_med" property="pMed" jdbcType="VARCHAR" />
+    <result column="P_ill" property="pIll" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from patient
+    where P_id = #{pId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzw.hospital.bean.Patient" >
+    insert into patient (P_id, P_username, P_pwd, 
+      P_name, P_sex, P_age, 
+      P_num, P_med, P_ill)
+    values (#{pId,jdbcType=INTEGER}, #{pUsername,jdbcType=VARCHAR}, #{pPwd,jdbcType=VARCHAR}, 
+      #{pName,jdbcType=VARCHAR}, #{pSex,jdbcType=VARCHAR}, #{pAge,jdbcType=INTEGER}, 
+      #{pNum,jdbcType=CHAR}, #{pMed,jdbcType=VARCHAR}, #{pIll,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hzw.hospital.bean.Patient" >
+    update patient
+    set P_username = #{pUsername,jdbcType=VARCHAR},
+      P_pwd = #{pPwd,jdbcType=VARCHAR},
+      P_name = #{pName,jdbcType=VARCHAR},
+      P_sex = #{pSex,jdbcType=VARCHAR},
+      P_age = #{pAge,jdbcType=INTEGER},
+      P_num = #{pNum,jdbcType=CHAR},
+      P_med = #{pMed,jdbcType=VARCHAR},
+      P_ill = #{pIll,jdbcType=VARCHAR}
+    where P_id = #{pId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select P_id, P_username, P_pwd, P_name, P_sex, P_age, P_num, P_med, P_ill
+    from patient
+    where P_id = #{pId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select P_id, P_username, P_pwd, P_name, P_sex, P_age, P_num, P_med, P_ill
+    from patient
+  </select>
+</mapper>

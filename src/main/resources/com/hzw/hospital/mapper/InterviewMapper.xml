@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzw.hospital.mapper.InterviewMapper" >
+  <resultMap id="BaseResultMap" type="com.hzw.hospital.bean.Interview" >
+    <id column="I_id" property="iId" jdbcType="INTEGER" />
+    <result column="P_id" property="pId" jdbcType="INTEGER" />
+    <result column="I_date" property="iDate" jdbcType="DATE" />
+    <result column="I_time" property="iTime" jdbcType="CHAR" />
+    <result column="D_id" property="dId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from interview
+    where I_id = #{iId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzw.hospital.bean.Interview" >
+    insert into interview (I_id, P_id, I_date, 
+      I_time, D_id)
+    values (#{iId,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}, #{iDate,jdbcType=DATE}, 
+      #{iTime,jdbcType=CHAR}, #{dId,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.hzw.hospital.bean.Interview" >
+    update interview
+    set P_id = #{pId,jdbcType=INTEGER},
+      I_date = #{iDate,jdbcType=DATE},
+      I_time = #{iTime,jdbcType=CHAR},
+      D_id = #{dId,jdbcType=INTEGER}
+    where I_id = #{iId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select I_id, P_id, I_date, I_time, D_id
+    from interview
+    where I_id = #{iId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select I_id, P_id, I_date, I_time, D_id
+    from interview
+  </select>
+</mapper>

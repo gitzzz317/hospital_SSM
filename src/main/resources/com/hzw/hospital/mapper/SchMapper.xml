@@ -3,13 +3,17 @@
 <mapper namespace="com.hzw.hospital.mapper.SchMapper" >
   <resultMap id="BaseResultMap" type="com.hzw.hospital.bean.Sch" >
     <id column="SCH_id" property="schId" jdbcType="INTEGER" />
-    <result column="D_id" property="dId" jdbcType="INTEGER" />
     <result column="SUR_id" property="surId" jdbcType="INTEGER" />
     <result column="SCH_date" property="schDate" jdbcType="DATE" />
     <result column="SCH_time" property="schTime" jdbcType="CHAR" />
     <result column="SCH_size" property="schSize" jdbcType="INTEGER" />
     <result column="SCH_booked" property="schBooked" jdbcType="INTEGER" />
+    <association property="doctor"
+                 select="com.hzw.hospital.mapper.DoctorMapper.getSchAndDoctorAllTwo"
+                 column="D_id">
+    </association>
   </resultMap>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sch
     where SCH_id = #{schId,jdbcType=INTEGER}
@@ -37,8 +41,11 @@
     from sch
     where SCH_id = #{schId,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap" >
-    select SCH_id, D_id, SUR_id, SCH_date, SCH_time, SCH_size, SCH_booked
+
+
+<!--  List<Sch> getSchAndDoctorAllOne();-->
+  <select id="getSchAndDoctorAllOne" resultMap="BaseResultMap" >
+    select *
     from sch
   </select>
 </mapper>

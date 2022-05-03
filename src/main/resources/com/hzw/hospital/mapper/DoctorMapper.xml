@@ -41,4 +41,11 @@
     select D_id, D_username, D_pwd, D_name, D_age, D_sex, SUR_id
     from doctor
   </select>
+
+<!--  Doctor getSchAndDoctorAllTwo(@Param("dId") Integer dId);-->
+  <select id="getSchAndDoctorAllTwo" resultMap="BaseResultMap" >
+    select *
+    from doctor
+    where D_id = #{dId}
+  </select>
 </mapper>

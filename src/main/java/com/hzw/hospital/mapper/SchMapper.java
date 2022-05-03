@@ -12,7 +12,14 @@ public interface SchMapper {
 
     Sch selectByPrimaryKey(Integer schId);
 
-    List<Sch> selectAll();
 
     int updateByPrimaryKey(Sch record);
+
+
+    /**
+     * 通过分步查询，医生排班及所对应的医生信息
+     * 分步查询第一步：查询医生排班信息
+     * @return
+     */
+    List<Sch> getSchAndDoctorAllOne();
 }

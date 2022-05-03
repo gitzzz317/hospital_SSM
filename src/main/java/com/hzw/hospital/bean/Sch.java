@@ -4,12 +4,13 @@ import java.util.Date;
 
 public class Sch {
     private Integer schId;
-
-    private Integer dId;
+    //医生多对一关系
+//    private Integer dId;
+    private Doctor doctor;
 
     private Integer surId;
 
-    private Date schDate;
+    private String  schDate;
 
     private String schTime;
 
@@ -20,9 +21,9 @@ public class Sch {
     public Sch() {
     }
 
-    public Sch(Integer schId, Integer dId, Integer surId, Date schDate, String schTime, Integer schSize, Integer schBooked) {
+    public Sch(Integer schId, Doctor doctor, Integer surId, String schDate, String schTime, Integer schSize, Integer schBooked) {
         this.schId = schId;
-        this.dId = dId;
+        this.doctor = doctor;
         this.surId = surId;
         this.schDate = schDate;
         this.schTime = schTime;
@@ -38,12 +39,12 @@ public class Sch {
         this.schId = schId;
     }
 
-    public Integer getdId() {
-        return dId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setdId(Integer dId) {
-        this.dId = dId;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     public Integer getSurId() {
@@ -54,11 +55,11 @@ public class Sch {
         this.surId = surId;
     }
 
-    public Date getSchDate() {
+    public String getSchDate() {
         return schDate;
     }
 
-    public void setSchDate(Date schDate) {
+    public void setSchDate(String schDate) {
         this.schDate = schDate;
     }
 
@@ -67,7 +68,7 @@ public class Sch {
     }
 
     public void setSchTime(String schTime) {
-        this.schTime = schTime == null ? null : schTime.trim();
+        this.schTime = schTime;
     }
 
     public Integer getSchSize() {
@@ -90,9 +91,9 @@ public class Sch {
     public String toString() {
         return "Sch{" +
                 "schId=" + schId +
-                ", dId=" + dId +
+                ", doctor=" + doctor +
                 ", surId=" + surId +
-                ", schDate=" + schDate +
+                ", schDate='" + schDate + '\'' +
                 ", schTime='" + schTime + '\'' +
                 ", schSize=" + schSize +
                 ", schBooked=" + schBooked +

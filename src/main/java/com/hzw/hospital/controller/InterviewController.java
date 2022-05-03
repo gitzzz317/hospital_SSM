@@ -1,14 +1,52 @@
 package com.hzw.hospital.controller;
 
+import com.hzw.hospital.bean.Interview;
+import com.hzw.hospital.bean.Patient;
+import com.hzw.hospital.bean.Sch;
+import com.hzw.hospital.service.SchService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class InterviewController {
-
-    @RequestMapping(value = "/interviewAdd")
-    public String toInterview(){
+    @Autowired
+    SchService schService;
+    //查出所有医生排班，跳转到添加预约页面
+    @RequestMapping(value = "/InterviewAdd")
+    public String toInterview(Model model){
+        List<Sch> schList = schService.selectAll();
+        model.addAttribute("schList",schList);
         return "patient/interviewAdd";
     }
+    //添加预约信息
+    @RequestMapping(value = "/Interview" , method = RequestMethod.POST)
+    public String addInterview(Sch sch , HttpSession session){
+        //interviewService.addInterview(((Patient)session.getAttribute("Logined_User")).getP_id(),sch);
+        System.out.println("添加成功！");
+        return "redirect:/InterviewShow";
+    }
+    //根据日期或者时间查询医生排班
+    @RequestMapping(value = "/Sch" , method = RequestMethod.POST)
+    public String getSCHbyDateOrTime(@RequestParam(value = "searchDate") String  searchDate , @RequestParam(value = "searchTime") String searchTime , Model model){
+//        List<Sch> schList = interviewService.getSCHByDateOrTime(searchDate, searchTime);
+//        model.addAttribute("schList",schList);
+        return "patient/interviewAdd";
+    }
+
+    //删除预约信息
+    @RequestMapping(value = "/DelInterview/{id}")
+    public String delInterview(@PathVariable("id") int id){
+//        interviewService.delInterview(id);
+        return "redirect:/PatientHome";
+    }
+
 
 }

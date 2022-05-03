@@ -35,4 +35,13 @@
     select I_id, P_id, I_date, I_time, D_id
     from interview
   </select>
+
+
+<!--  List<Interview> getInterviewByPid(Integer pId);-->
+  <select id="getInterviewByPid" resultMap="BaseResultMap">
+    select *
+    from interview
+    where P_id = #{pId}
+  </select>
+
 </mapper>

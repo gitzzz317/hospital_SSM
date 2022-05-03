@@ -11,51 +11,52 @@
 <!--搭建添加预约信息页面-->
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-11 col-md-offset-1">
                 <form th:action="@{/Sch}" method="post">
-                            预约日期：<input type="date" name="searchDate" class="search">
-                            预约时间：<input type="text" name="searchTime" list="searchTimeList" class="search">
-                            <datalist id="searchTimeList">
-                                <option>上午</option>
-                                <option>下午</option>
-                            </datalist>
-                            <input type="submit" value="查询" id="search">
-                    <a th:href="@{/PatientHome}" class="btn btn-default btn-lg disabled" role="button">返回</a>
+                    预约日期：<input type="date" name="searchDate" class="search">
+                    预约时间：<input type="text" name="searchTime" list="searchTimeList" class="search">
+                    <datalist id="searchTimeList">
+                        <option>上午</option>
+                        <option>下午</option>
+                    </datalist>
+                    <input type="submit" value="查询" id="search">
                 </form>
         </div>
     </div>
     <div class="row">
-        <table class="table table-striped">
-            <tr>
-                <th>预约日期</th>
-                <th>预约时间</th>
-                <th>医生</th>
-                <th>所在诊室</th>
-                <th>可预约人数</th>
-                <th>已预约人数</th>
-                <th colspan="2">操作</th>
-            </tr>
-            <tr th:each="sch : ${schs}">
-                <form action="Interview" method="post">
-                    <input type="hidden" name="SCH_id" th:value="${sch.SCH_id}">
-                    <input type="hidden" name="SCH_date" th:value="${sch.SCH_date}">
-                    <td th:text="${sch.SCH_date}"></td>
-                    <input type="hidden" name="SCH_time" th:value="${sch.SCH_time}">
-                    <td th:text="${sch.SCH_time}"></td>
-                    <input type="hidden" name="D_id" th:value="${sch.D_id}">
-                    <td th:text="${sch.D_id}"></td>
-                    <input type="hidden" name="SUR_id" th:value="${sch.SUR_id}">
-                    <td th:text="${sch.SUR_id}"></td>
-                    <input type="hidden" name="SCH_size" th:value="${sch.SCH_size}">
-                    <td th:text="${sch.SCH_size}"></td>
-                    <input type="hidden" name="SCH_booked" th:value="${sch.SCH_booked}">
-                    <td th:text="${sch.SCH_booked}"></td>
-                    <td>
-                        <input type="submit" value="添加预约">
-                    </td>
-                </form>
-            </tr>
-        </table>
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <tr>
+                    <th>预约日期</th>
+                    <th>预约时间</th>
+                    <th>医生</th>
+                    <th>所在诊室</th>
+                    <th>预约人数上限</th>
+                    <th>已预约人数</th>
+                    <th colspan="2">操作</th>
+                </tr>
+                <tr th:each="sch : ${schList}">
+                    <form th:action="@{/Interview}" method="post">
+                        <input type="hidden" name="schId" th:value="${sch.schId}">
+                        <input type="hidden" name="schDate" th:value="${sch.schDate}">
+                        <td th:text="${sch.schDate}"></td>
+                        <input type="hidden" name="schTime" th:value="${sch.schTime}">
+                        <td th:text="${sch.schTime}"></td>
+                        <input type="hidden" name="doctor.dId" th:value="${sch.doctor.dId}">
+                        <td th:text="${sch.doctor.dName}"></td>
+                        <input type="hidden" name="surId" th:value="${sch.surId}">
+                        <td th:text="${sch.surId}"></td>
+                        <input type="hidden" name="schSize" th:value="${sch.schSize}">
+                        <td th:text="${sch.schSize}"></td>
+                        <input type="hidden" name="schBooked" th:value="${sch.schBooked}">
+                        <td th:text="${sch.schBooked}"></td>
+                        <td>
+                            <input type="submit" value="添加预约">
+                        </td>
+                    </form>
+                </tr>
+            </table>
+        </div>
     </div>
 </div>
 </body>

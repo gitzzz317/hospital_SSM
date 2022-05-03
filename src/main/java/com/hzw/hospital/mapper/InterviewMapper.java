@@ -1,6 +1,7 @@
 package com.hzw.hospital.mapper;
 
 import com.hzw.hospital.bean.Interview;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,4 +16,8 @@ public interface InterviewMapper {
     List<Interview> selectAll();
 
     int updateByPrimaryKey(Interview record);
+
+
+
+    List<Interview> getInterviewByPid(@Param("pId") Integer pId);
 }

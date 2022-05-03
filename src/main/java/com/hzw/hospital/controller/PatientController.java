@@ -26,13 +26,8 @@ public class PatientController {
     public String addinterview(String pUsername , String pPwd , HttpSession session){
         Patient patient = patientService.selectPatientByUsernameAndPwd(pUsername,pPwd);
         if (patient != null) {
-            //获取当前登录患者的所有预约
-//            List<Interview> interviews = interviewService.getInterviewByP_id(patient.getP_id());
             //将登录的用户共享到session域
             session.setAttribute("Logined_User", patient);
-            //将当前登录的患者和所有预约的信息传到Request域
-//            model.addAttribute("interviews", interviews);
-//            model.addAttribute("patient", patient);
             //跳转患者主页
             return "patient/index";
         } else {
@@ -40,26 +35,15 @@ public class PatientController {
         }
 
     }
-    //
-//    @RequestMapping(value = "/interviewAdd" )
-//    public String toInterviewAdd(Model model){
-//        List<Sch> schs = schService.selectAll();
-//        model.addAttribute("schs",schs);
-//        return "patient/interviewAdd";
-//    }
-    @RequestMapping(value = "/success")
-    public String toInterviewAdd(){
-        return "success";
-    }
 
     //显示用户预约信息
     @RequestMapping(value = "/InterviewShow", method = RequestMethod.GET)
     public String InterviewShow(HttpSession session, Model model) {
         //从session域中获取patient对象
         Patient patient = (Patient) session.getAttribute("Logined_User");
-//        //获取患者的预约信息
+        //获取患者的预约信息
         List<Interview> interviewList = interviewService.getInterviewByPid(patient.getpId());
-//        //共享到request域中
+        //共享到request域中
         model.addAttribute("interviewList", interviewList);
         return "patient/interviewShow";
     }

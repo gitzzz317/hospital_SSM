@@ -12,7 +12,12 @@ public class SchService {
     @Autowired
     SchMapper schMapper;
 
-    public List<Sch> selectAll() {
+    public List<Sch> getSchAll() {
         return schMapper.getSchAndDoctorAllOne();
+    }
+
+
+    public List<Sch> getSchByDateOrTime(String searchDate, String searchTime) {
+        return schMapper.getSchByDateOrTime(searchDate,searchTime);
     }
 }

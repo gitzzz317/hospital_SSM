@@ -20,4 +20,21 @@ public interface InterviewMapper {
 
 
     List<Interview> getInterviewByPid(@Param("pId") Integer pId);
+
+
+    boolean addInterview(Interview interview);
+
+    /**
+     * 根据预约id查询预约信息
+     * @param id
+     * @return
+     */
+    Interview getInterviewById(@Param("id") Integer id);
+
+    /**
+     * 根据预约id删除预约信息
+     * @param id
+     * @return
+     */
+    boolean delInterview(@Param("id") Integer id);
 }

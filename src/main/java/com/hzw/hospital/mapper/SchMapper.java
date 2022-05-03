@@ -1,6 +1,7 @@
 package com.hzw.hospital.mapper;
 
 import com.hzw.hospital.bean.Sch;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,4 +23,29 @@ public interface SchMapper {
      * @return
      */
     List<Sch> getSchAndDoctorAllOne();
+
+    /**
+     * 根据日期或者时间查询医生排班信息
+     * @param searchDate
+     * @param searchTime
+     * @return
+     */
+    List<Sch> getSchByDateOrTime(@Param("searchDate") String searchDate,@Param("searchTime") String searchTime);
+
+    /**
+     * 通过id修改预约人数
+     * @param schId
+     * @param schBooked
+     * @return
+     */
+    boolean updateSchBookedBySchId(@Param("schId") Integer schId,@Param("schBooked") Integer schBooked);
+
+    /**
+     * 根据日期和时间和医生ID查询医生排班信息
+     * @param iDate
+     * @param iTime
+     * @param dId
+     * @return
+     */
+    Sch getSchByTimeAndDid(@Param("iDate") String iDate,@Param("iTime") String iTime,@Param("dId") Integer dId);
 }

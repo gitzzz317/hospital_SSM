@@ -48,4 +48,28 @@
     select *
     from sch
   </select>
+<!--  List<Sch> getSchByDateOrTime(@Param("searchDate") String searchDate,@Param("searchTime") String searchTime);-->
+  <select id="getSchByDateOrTime" resultMap="BaseResultMap">
+    select * from sch where 1=1
+    <if test="searchDate != null and searchDate !=''">
+      and SCH_Date = #{searchDate}
+    </if>
+    <if test="searchTime != null and searchTime !=''">
+      and SCH_Time = #{searchTime}
+    </if>
+  </select>
+<!--  boolean updateSchBookedBySchId(@Param("schId") Integer schId,@Param("schBooked") Integer schBooked);-->
+  <update id="updateSchBookedBySchId">
+    update sch
+    set SCH_booked = #{schBooked}
+    where SCH_id = #{schId}
+  </update>
+<!--  Sch getSchByTimeAndDid(@Param("iDate") String iDate,@Param("iTime") String iTime,@Param("dId") Integer dId);-->
+  <select id="getSchByTimeAndDid" resultMap="BaseResultMap">
+        select *
+        from sch
+        where SCH_date = #{iDate}
+          and SCH_time = #{iTime}
+          and D_id = #{dId}
+    </select>
 </mapper>

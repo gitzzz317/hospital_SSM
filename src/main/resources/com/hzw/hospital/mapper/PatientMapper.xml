@@ -45,4 +45,11 @@
     select P_id, P_username, P_pwd, P_name, P_sex, P_age, P_num, P_med, P_ill
     from patient
   </select>
+
+<!--  Patient selectPatientByUsernameAndPwd(@Param("pUsername") String pUsername,@Param("pPwd") String pPwd);-->
+  <select id="selectPatientByUsernameAndPwd" resultMap="BaseResultMap">
+        select *
+        from patient
+        where P_username = #{pUsername} and P_pwd = #{pPwd}
+  </select>
 </mapper>

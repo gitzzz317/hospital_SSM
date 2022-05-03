@@ -1,6 +1,5 @@
 package com.hzw.hospital.bean;
 
-import java.util.Date;
 
 public class Interview {
     private Integer iId;

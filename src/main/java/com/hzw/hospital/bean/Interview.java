@@ -4,23 +4,25 @@ package com.hzw.hospital.bean;
 public class Interview {
     private Integer iId;
 
-    private Integer pId;
+//    private Integer pId;
+    private Patient patient;
 
     private String  iDate;
 
     private String iTime;
 
-    private Integer dId;
+//    private Integer dId;
+    private Doctor doctor;
 
     public Interview() {
     }
 
-    public Interview(Integer iId, Integer pId, String  iDate, String iTime, Integer dId) {
+    public Interview(Integer iId, Patient patient, String iDate, String iTime, Doctor doctor) {
         this.iId = iId;
-        this.pId = pId;
+        this.patient = patient;
         this.iDate = iDate;
         this.iTime = iTime;
-        this.dId = dId;
+        this.doctor = doctor;
     }
 
     public Integer getiId() {
@@ -31,15 +33,15 @@ public class Interview {
         this.iId = iId;
     }
 
-    public Integer getpId() {
-        return pId;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setpId(Integer pId) {
-        this.pId = pId;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
-    public String  getiDate() {
+    public String getiDate() {
         return iDate;
     }
 
@@ -52,25 +54,25 @@ public class Interview {
     }
 
     public void setiTime(String iTime) {
-        this.iTime = iTime == null ? null : iTime.trim();
+        this.iTime = iTime;
     }
 
-    public Integer getdId() {
-        return dId;
+    public Doctor getDoctor() {
+        return doctor;
     }
 
-    public void setdId(Integer dId) {
-        this.dId = dId;
+    public void setDoctor(Doctor doctor) {
+        this.doctor = doctor;
     }
 
     @Override
     public String toString() {
         return "Interview{" +
                 "iId=" + iId +
-                ", pId=" + pId +
-                ", iDate=" + iDate +
+                ", patient=" + patient +
+                ", iDate='" + iDate + '\'' +
                 ", iTime='" + iTime + '\'' +
-                ", dId=" + dId +
+                ", doctor=" + doctor +
                 '}';
     }
 }

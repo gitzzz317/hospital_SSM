@@ -29,8 +29,9 @@
                 <tr>
                     <th>预约日期</th>
                     <th>预约时间</th>
+                    <th>科室</th>
+                    <th>诊室</th>
                     <th>医生</th>
-                    <th>所在诊室</th>
                     <th>预约人数上限</th>
                     <th>已预约人数</th>
                     <th colspan="2">操作</th>
@@ -42,10 +43,11 @@
                         <td th:text="${sch.schDate}"></td>
                         <input type="hidden" name="schTime" th:value="${sch.schTime}">
                         <td th:text="${sch.schTime}"></td>
+                        <td th:text="${sch.surgery.office.oName}"></td>
+                        <input type="hidden" name="surId" th:value="${sch.surgery.surId}">
+                        <td th:text="${sch.surgery.surSite}"></td>
                         <input type="hidden" name="doctor.dId" th:value="${sch.doctor.dId}">
                         <td th:text="${sch.doctor.dName}"></td>
-                        <input type="hidden" name="surId" th:value="${sch.surId}">
-                        <td th:text="${sch.surId}"></td>
                         <input type="hidden" name="schSize" th:value="${sch.schSize}">
                         <td th:text="${sch.schSize}"></td>
                         <input type="hidden" name="schBooked" th:value="${sch.schBooked}">

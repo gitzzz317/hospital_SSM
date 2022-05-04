@@ -36,11 +36,7 @@
       P_ill = #{pIll,jdbcType=VARCHAR}
     where P_id = #{pId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select P_id, P_username, P_pwd, P_name, P_sex, P_age, P_num, P_med, P_ill
-    from patient
-    where P_id = #{pId,jdbcType=INTEGER}
-  </select>
+
   <select id="selectAll" resultMap="BaseResultMap" >
     select P_id, P_username, P_pwd, P_name, P_sex, P_age, P_num, P_med, P_ill
     from patient
@@ -51,5 +47,11 @@
         select *
         from patient
         where P_username = #{pUsername} and P_pwd = #{pPwd}
+  </select>
+<!--  Patient getPatientById(@Param("pId") Integer pId);-->
+  <select id="getPatientById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select P_id, P_username, P_pwd, P_name, P_sex, P_age, P_num, P_med, P_ill
+    from patient
+    where P_id = #{pId,jdbcType=INTEGER}
   </select>
 </mapper>

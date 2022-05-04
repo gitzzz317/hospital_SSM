@@ -24,13 +24,17 @@
       O_site = #{oSite,jdbcType=VARCHAR}
     where O_id = #{oId,jdbcType=INTEGER}
   </update>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select O_id, O_name, O_des, O_site
-    from office
-    where O_id = #{oId,jdbcType=INTEGER}
-  </select>
+
   <select id="selectAll" resultMap="BaseResultMap" >
     select O_id, O_name, O_des, O_site
     from office
   </select>
+
+<!--  Office getOfficeById(@Param("oId") Integer oId);-->
+  <select id="getOfficeById" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select O_id, O_name, O_des, O_site
+    from office
+    where O_id = #{oId,jdbcType=INTEGER}
+  </select>
+
 </mapper>

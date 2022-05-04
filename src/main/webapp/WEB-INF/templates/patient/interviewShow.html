@@ -15,13 +15,17 @@
                 <tr>
                     <th>预约日期</th>
                     <th>预约时间</th>
+                    <th>科室</th>
+                    <th>诊室</th>
                     <th>预约医生</th>
                     <th>操作</th>
                 </tr>
                 <tr th:each="interview:${interviewList}">
                     <td th:text="${interview.iDate}"></td>
                     <td th:text="${interview.iTime}"></td>
-                    <td th:text="${interview.dId}"></td>
+                    <td th:text="${interview.doctor.surgery.office.oName}"></td>
+                    <td th:text="${interview.doctor.surgery.surSite}"></td>
+                    <td th:text="${interview.doctor.dName}"></td>
                     <td>
                         <a th:href="@{'/DelInterview/'+${interview.iId}}">取消预约</a>
                     </td>

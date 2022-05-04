@@ -33,7 +33,8 @@ public class InterviewController {
     //添加预约信息
     @RequestMapping(value = "/Interview" , method = RequestMethod.POST)
     public String addInterview(Sch sch , HttpSession session){
-        Interview interview = new Interview(null, ((Patient) session.getAttribute("Logined_User")).getpId(), sch.getSchDate(), sch.getSchTime(), sch.getDoctor().getdId());
+        Interview interview = new Interview(null, ((Patient) session.getAttribute("Logined_User")), sch.getSchDate(), sch.getSchTime(), sch.getDoctor());
+        //Interview interview = new Interview(null, ((Patient) session.getAttribute("Logined_User")).getpId(), sch.getSchDate(), sch.getSchTime(), sch.getDoctor().getdId());
         Integer schBooked = sch.getSchBooked();
         Integer schId = sch.getSchId();
         interviewService.addInterview(interview , schId , schBooked);

@@ -3,14 +3,18 @@
 <mapper namespace="com.hzw.hospital.mapper.SchMapper" >
   <resultMap id="BaseResultMap" type="com.hzw.hospital.bean.Sch" >
     <id column="SCH_id" property="schId" jdbcType="INTEGER" />
-    <result column="SUR_id" property="surId" jdbcType="INTEGER" />
     <result column="SCH_date" property="schDate" jdbcType="DATE" />
     <result column="SCH_time" property="schTime" jdbcType="CHAR" />
     <result column="SCH_size" property="schSize" jdbcType="INTEGER" />
     <result column="SCH_booked" property="schBooked" jdbcType="INTEGER" />
     <association property="doctor"
-                 select="com.hzw.hospital.mapper.DoctorMapper.getSchAndDoctorAllTwo"
+                 select="com.hzw.hospital.mapper.DoctorMapper.getDoctorById"
                  column="D_id">
+    </association>
+    <!--    <result column="SUR_id" property="surId" jdbcType="INTEGER" />-->
+    <association property="surgery"
+                 select="com.hzw.hospital.mapper.SurgeryMapper.getSurgeryBySurId"
+                 column="SUR_id">
     </association>
   </resultMap>
 
@@ -19,11 +23,11 @@
     where SCH_id = #{schId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hzw.hospital.bean.Sch" >
-    insert into sch (SCH_id, D_id, SUR_id, 
-      SCH_date, SCH_time, SCH_size, 
+    insert into sch (SCH_id, D_id, SUR_id,
+      SCH_date, SCH_time, SCH_size,
       SCH_booked)
-    values (#{schId,jdbcType=INTEGER}, #{dId,jdbcType=INTEGER}, #{surId,jdbcType=INTEGER}, 
-      #{schDate,jdbcType=DATE}, #{schTime,jdbcType=CHAR}, #{schSize,jdbcType=INTEGER}, 
+    values (#{schId,jdbcType=INTEGER}, #{dId,jdbcType=INTEGER}, #{surId,jdbcType=INTEGER},
+      #{schDate,jdbcType=DATE}, #{schTime,jdbcType=CHAR}, #{schSize,jdbcType=INTEGER},
       #{schBooked,jdbcType=INTEGER})
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.hzw.hospital.bean.Sch" >
@@ -43,8 +47,8 @@
   </select>
 
 
-<!--  List<Sch> getSchAndDoctorAllOne();-->
-  <select id="getSchAndDoctorAllOne" resultMap="BaseResultMap" >
+<!--  List<Sch> getSchAll();-->
+  <select id="getSchAll" resultMap="BaseResultMap" >
     select *
     from sch
   </select>

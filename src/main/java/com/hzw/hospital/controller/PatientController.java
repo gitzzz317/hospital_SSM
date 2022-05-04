@@ -2,10 +2,8 @@ package com.hzw.hospital.controller;
 
 import com.hzw.hospital.bean.Interview;
 import com.hzw.hospital.bean.Patient;
-import com.hzw.hospital.bean.Sch;
 import com.hzw.hospital.service.InterviewService;
 import com.hzw.hospital.service.PatientService;
-import com.hzw.hospital.service.SchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

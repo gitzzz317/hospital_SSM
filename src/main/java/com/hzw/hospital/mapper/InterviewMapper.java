@@ -18,10 +18,18 @@ public interface InterviewMapper {
     int updateByPrimaryKey(Interview record);
 
 
-
+    /**
+     * 根据患者id查询预约信息
+     * @param pId
+     * @return
+     */
     List<Interview> getInterviewByPid(@Param("pId") Integer pId);
 
-
+    /**
+     * 添加预约信息
+     * @param interview
+     * @return
+     */
     boolean addInterview(Interview interview);
 
     /**

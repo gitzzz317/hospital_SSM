@@ -3,10 +3,18 @@
 <mapper namespace="com.hzw.hospital.mapper.InterviewMapper" >
   <resultMap id="BaseResultMap" type="com.hzw.hospital.bean.Interview" >
     <id column="I_id" property="iId" jdbcType="INTEGER" />
-    <result column="P_id" property="pId" jdbcType="INTEGER" />
     <result column="I_date" property="iDate" jdbcType="DATE" />
     <result column="I_time" property="iTime" jdbcType="CHAR" />
-    <result column="D_id" property="dId" jdbcType="INTEGER" />
+<!--    <result column="D_id" property="dId" jdbcType="INTEGER" />-->
+    <association property="doctor"
+                 select="com.hzw.hospital.mapper.DoctorMapper.getDoctorById"
+                 column="D_id">
+    </association>
+    <!--    <result column="P_id" property="pId" jdbcType="INTEGER" />-->
+    <association property="patient"
+                 select="com.hzw.hospital.mapper.PatientMapper.getPatientById"
+                 column="P_id">
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from interview
@@ -46,7 +54,7 @@
 <!--  boolean addInterview(Interview interview);-->
   <insert id="addInterview" parameterType="com.hzw.hospital.bean.Interview" >
     insert into interview (I_id, P_id, I_date, I_time, D_id)
-    values (null , #{pId}, #{iDate}, #{iTime}, #{dId})
+    values (null , #{patient.pId}, #{iDate}, #{iTime}, #{doctor.dId})
   </insert>
 <!--  Interview getInterviewById(@Param("id") Integer id);-->
   <select id="getInterviewById" resultMap="BaseResultMap">

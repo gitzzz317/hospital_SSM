@@ -7,8 +7,9 @@ public class Sch {
     //医生多对一关系
 //    private Integer dId;
     private Doctor doctor;
-
-    private Integer surId;
+//    诊室多对一关系
+//    private Integer surId;
+    private Surgery surgery;
 
     private String  schDate;
 
@@ -21,10 +22,10 @@ public class Sch {
     public Sch() {
     }
 
-    public Sch(Integer schId, Doctor doctor, Integer surId, String schDate, String schTime, Integer schSize, Integer schBooked) {
+    public Sch(Integer schId, Doctor doctor, Surgery surgery, String schDate, String schTime, Integer schSize, Integer schBooked) {
         this.schId = schId;
         this.doctor = doctor;
-        this.surId = surId;
+        this.surgery = surgery;
         this.schDate = schDate;
         this.schTime = schTime;
         this.schSize = schSize;
@@ -47,12 +48,12 @@ public class Sch {
         this.doctor = doctor;
     }
 
-    public Integer getSurId() {
-        return surId;
+    public Surgery getSurgery() {
+        return surgery;
     }
 
-    public void setSurId(Integer surId) {
-        this.surId = surId;
+    public void setSurgery(Surgery surgery) {
+        this.surgery = surgery;
     }
 
     public String getSchDate() {
@@ -92,7 +93,7 @@ public class Sch {
         return "Sch{" +
                 "schId=" + schId +
                 ", doctor=" + doctor +
-                ", surId=" + surId +
+                ", surgery=" + surgery +
                 ", schDate='" + schDate + '\'' +
                 ", schTime='" + schTime + '\'' +
                 ", schSize=" + schSize +

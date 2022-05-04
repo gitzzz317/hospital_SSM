@@ -13,7 +13,7 @@ public class SchService {
     SchMapper schMapper;
 
     public List<Sch> getSchAll() {
-        return schMapper.getSchAndDoctorAllOne();
+        return schMapper.getSchAll();
     }
 
 

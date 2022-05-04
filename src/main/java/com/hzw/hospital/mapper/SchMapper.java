@@ -11,9 +11,6 @@ public interface SchMapper {
 
     int insert(Sch record);
 
-    Sch selectByPrimaryKey(Integer schId);
-
-
     int updateByPrimaryKey(Sch record);
 
 
@@ -22,7 +19,7 @@ public interface SchMapper {
      * 分步查询第一步：查询医生排班信息
      * @return
      */
-    List<Sch> getSchAndDoctorAllOne();
+    List<Sch> getSchAll();
 
     /**
      * 根据日期或者时间查询医生排班信息

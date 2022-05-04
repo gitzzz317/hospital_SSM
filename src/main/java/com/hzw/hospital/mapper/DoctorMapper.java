@@ -23,5 +23,5 @@ public interface DoctorMapper {
      * @param dId
      * @return
      */
-    Doctor getSchAndDoctorAllTwo(@Param("dId") Integer dId);
+    Doctor getDoctorById(@Param("dId") Integer dId);
 }

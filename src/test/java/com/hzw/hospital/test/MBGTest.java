@@ -1,10 +1,7 @@
 package com.hzw.hospital.test;
 
-import com.hzw.hospital.bean.Doctor;
-import com.hzw.hospital.bean.Patient;
+
 import com.hzw.hospital.bean.Sch;
-import com.hzw.hospital.mapper.DoctorMapper;
-import com.hzw.hospital.mapper.PatientMapper;
 import com.hzw.hospital.mapper.SchMapper;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -19,19 +16,14 @@ public class MBGTest {
 //        PatientMapper patientMapper = context.getBean(PatientMapper.class);
 //        Patient patient = patientMapper.selectPatientByUsernameAndPwd("hzw", "hzw");
 //        System.out.println(patient);
-//        DoctorMapper doctorMapper = context.getBean(DoctorMapper.class);
-//        Doctor doctor = doctorMapper.getSchAndDoctorAllTwo(1);
-//        System.out.println(doctor);
-        SchMapper schMapper = context.getBean(SchMapper.class);
-        List<Sch> schList = schMapper.getSchAndDoctorAllOne();
-        System.out.println(schList.get(0).getSchSize());
-//        System.out.println(schList);
-//        List<Interview> interviews = bean.selectAll();
-//        System.out.println(interviews);
+//
+//        SurgeryMapper surgeryMapper = context.getBean(SurgeryMapper.class);
+//        Surgery surgeryBySurId = surgeryMapper.getSurgeryBySurId(1);
+//        System.out.println(surgeryBySurId);
 
-//        List<Interview> interviews = bean.selectAll();
-//        System.out.println(interviews);
-//        Interview interview = new Interview(null, 1, new Date(), "上午", 1);
-//        bean.insert(interview);
+        SchMapper schMapper = context.getBean(SchMapper.class);
+        List<Sch> schList = schMapper.getSchAll();
+        System.out.println(schList);
+
     }
 }

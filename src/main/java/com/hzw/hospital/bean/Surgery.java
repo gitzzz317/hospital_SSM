@@ -3,7 +3,8 @@ package com.hzw.hospital.bean;
 public class Surgery {
     private Integer surId;
 
-    private Integer oId;
+//    private Integer oId;
+    private Office office;
 
     private String surSite;
 
@@ -12,9 +13,9 @@ public class Surgery {
     public Surgery() {
     }
 
-    public Surgery(Integer surId, Integer oId, String surSite, String surMana) {
+    public Surgery(Integer surId, Office office, String surSite, String surMana) {
         this.surId = surId;
-        this.oId = oId;
+        this.office = office;
         this.surSite = surSite;
         this.surMana = surMana;
     }
@@ -27,12 +28,12 @@ public class Surgery {
         this.surId = surId;
     }
 
-    public Integer getoId() {
-        return oId;
+    public Office getOffice() {
+        return office;
     }
 
-    public void setoId(Integer oId) {
-        this.oId = oId;
+    public void setOffice(Office office) {
+        this.office = office;
     }
 
     public String getSurSite() {
@@ -40,7 +41,7 @@ public class Surgery {
     }
 
     public void setSurSite(String surSite) {
-        this.surSite = surSite == null ? null : surSite.trim();
+        this.surSite = surSite;
     }
 
     public String getSurMana() {
@@ -48,14 +49,14 @@ public class Surgery {
     }
 
     public void setSurMana(String surMana) {
-        this.surMana = surMana == null ? null : surMana.trim();
+        this.surMana = surMana;
     }
 
     @Override
     public String toString() {
         return "Surgery{" +
                 "surId=" + surId +
-                ", oId=" + oId +
+                ", office=" + office +
                 ", surSite='" + surSite + '\'' +
                 ", surMana='" + surMana + '\'' +
                 '}';

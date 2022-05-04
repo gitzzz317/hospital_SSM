@@ -8,7 +8,11 @@
     <result column="D_name" property="dName" jdbcType="VARCHAR" />
     <result column="D_age" property="dAge" jdbcType="INTEGER" />
     <result column="D_sex" property="dSex" jdbcType="VARCHAR" />
-    <result column="SUR_id" property="surId" jdbcType="INTEGER" />
+<!--    <result column="SUR_id" property="surId" jdbcType="INTEGER" />-->
+    <association property="surgery"
+                 select="com.hzw.hospital.mapper.SurgeryMapper.getSurgeryBySurId"
+                 column="SUR_id">
+    </association>
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from doctor
@@ -42,8 +46,8 @@
     from doctor
   </select>
 
-<!--  Doctor getSchAndDoctorAllTwo(@Param("dId") Integer dId);-->
-  <select id="getSchAndDoctorAllTwo" resultMap="BaseResultMap" >
+<!--  Doctor getDoctorById(@Param("dId") Integer dId);-->
+  <select id="getDoctorById" resultMap="BaseResultMap" >
     select *
     from doctor
     where D_id = #{dId}

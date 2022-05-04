@@ -13,19 +13,20 @@ public class Doctor {
 
     private String dSex;
 
-    private Integer surId;
+//    private Integer surId;
+    private Surgery surgery;
 
     public Doctor() {
     }
 
-    public Doctor(Integer dId, String dUsername, String dPwd, String dName, Integer dAge, String dSex, Integer surId) {
+    public Doctor(Integer dId, String dUsername, String dPwd, String dName, Integer dAge, String dSex, Surgery surgery) {
         this.dId = dId;
         this.dUsername = dUsername;
         this.dPwd = dPwd;
         this.dName = dName;
         this.dAge = dAge;
         this.dSex = dSex;
-        this.surId = surId;
+        this.surgery = surgery;
     }
 
     public Integer getdId() {
@@ -41,7 +42,7 @@ public class Doctor {
     }
 
     public void setdUsername(String dUsername) {
-        this.dUsername = dUsername == null ? null : dUsername.trim();
+        this.dUsername = dUsername;
     }
 
     public String getdPwd() {
@@ -49,7 +50,7 @@ public class Doctor {
     }
 
     public void setdPwd(String dPwd) {
-        this.dPwd = dPwd == null ? null : dPwd.trim();
+        this.dPwd = dPwd;
     }
 
     public String getdName() {
@@ -57,7 +58,7 @@ public class Doctor {
     }
 
     public void setdName(String dName) {
-        this.dName = dName == null ? null : dName.trim();
+        this.dName = dName;
     }
 
     public Integer getdAge() {
@@ -73,15 +74,15 @@ public class Doctor {
     }
 
     public void setdSex(String dSex) {
-        this.dSex = dSex == null ? null : dSex.trim();
+        this.dSex = dSex;
     }
 
-    public Integer getSurId() {
-        return surId;
+    public Surgery getSurgery() {
+        return surgery;
     }
 
-    public void setSurId(Integer surId) {
-        this.surId = surId;
+    public void setSurgery(Surgery surgery) {
+        this.surgery = surgery;
     }
 
     @Override
@@ -93,7 +94,7 @@ public class Doctor {
                 ", dName='" + dName + '\'' +
                 ", dAge=" + dAge +
                 ", dSex='" + dSex + '\'' +
-                ", surId=" + surId +
+                ", surgery=" + surgery +
                 '}';
     }
 }

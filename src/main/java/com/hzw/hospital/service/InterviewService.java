@@ -28,7 +28,7 @@ public class InterviewService {
         //1.根据预约id查询预约信息
         Interview interview = interviewMapper.getInterviewById(id);
         //2.根据预约信息查询对于的医生排班
-        Sch sch = schMapper.getSchByTimeAndDid(interview.getiDate(), interview.getiTime(), interview.getdId());
+        Sch sch = schMapper.getSchByTimeAndDid(interview.getiDate(), interview.getiTime(), interview.getDoctor().getdId());
         //3.删除该预约信息
         interviewMapper.delInterview(id);
         //4.医生排班中已预约人数减1

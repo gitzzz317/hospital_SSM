@@ -15,17 +15,17 @@
         <div class="col-md-8">
             <h1>北理珠医院预约挂号系统</h1>
         </div>
-        <div class="col-md-2 col-md-offset-2">
+        <div class="col-md-2 col-md-offset-2" style="padding-top: 20px">
             <!-- Single button -->
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span th:text="${session.Logined_User.pUsername}"></span><span class="caret" ></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="#">修改个人信息</a></li>
+                    <li><a th:href="@{/PatientUpdate}" target="show">修改个人信息</a></li>
                     <li><a href="#">意见反馈</a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a href="#">退出登录</a></li>
+                    <li><a th:href="@{/Loginout}">退出登录</a></li>
                 </ul>
             </div>
         </div>

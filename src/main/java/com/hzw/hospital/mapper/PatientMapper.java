@@ -6,7 +6,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PatientMapper {
-    //用户登录
+    /**
+     * 根据用户名和密码查询患者
+     * @param pUsername
+     * @param pPwd
+     * @return
+     */
     Patient selectPatientByUsernameAndPwd(@Param("pUsername") String pUsername,@Param("pPwd") String pPwd);
 
     /**
@@ -15,4 +20,11 @@ public interface PatientMapper {
      * @return
      */
     Patient getPatientById(@Param("pId") Integer pId);
+
+    /**
+     * 修改patient
+     * @param patient
+     * @return
+     */
+    int updatePatient(Patient patient);
 }

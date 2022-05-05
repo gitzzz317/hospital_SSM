@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -23,22 +25,49 @@ public class InterviewController {
     @Autowired
     InterviewService interviewService;
 
-    //查出所有医生排班，跳转到添加预约页面
+    //查出所有医生大于对于今天的排班，跳转到添加预约页面
     @RequestMapping(value = "/InterviewAdd")
     public String toInterview(Model model){
-        List<Sch> schList = schService.getSchAll();
+//        List<Sch> schList = schService.getSchAll();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String iDate = formatter.format(new Date());
+        System.out.println(iDate);
+        List<Sch> schList = schService.getSchByDate(iDate);
         model.addAttribute("schList",schList);
         return "patient/interviewAdd";
     }
     //添加预约信息
     @RequestMapping(value = "/Interview" , method = RequestMethod.POST)
-    public String addInterview(Sch sch , HttpSession session){
-        Interview interview = new Interview(null, ((Patient) session.getAttribute("Logined_User")), sch.getSchDate(), sch.getSchTime(), sch.getDoctor());
-        //Interview interview = new Interview(null, ((Patient) session.getAttribute("Logined_User")).getpId(), sch.getSchDate(), sch.getSchTime(), sch.getDoctor().getdId());
-        Integer schBooked = sch.getSchBooked();
-        Integer schId = sch.getSchId();
-        interviewService.addInterview(interview , schId , schBooked);
-        return "redirect:/InterviewShow";
+    public String addInterview(Sch sch , HttpSession session , Model model){
+        Patient patient = (Patient)session.getAttribute("Logined_User");
+        //1.查询是否已预约过了
+        Interview interviewed = interviewService.getInterviewByPidIdateItimeDid(patient.getpId(), sch.getSchDate(), sch.getSchTime(), sch.getDoctor().getdId());
+        //2.如果没预约
+        if(interviewed == null ){
+            if(sch.getSchBooked()<10){
+                Interview interview = new Interview(null, patient, sch.getSchDate(), sch.getSchTime(), sch.getDoctor());
+                Integer schBooked = sch.getSchBooked();
+                Integer schId = sch.getSchId();
+                interviewService.addInterview(interview , schId , schBooked);
+                return "redirect:/InterviewShow";
+            }else {
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                String sDate = formatter.format(new Date());
+                System.out.println(sDate);
+                List<Sch> schList = schService.getSchByDate(sDate);
+                model.addAttribute("schList",schList);
+                model.addAttribute("Msg" , "预约人数已满，无法预约！");
+                return "patient/interviewAdd";
+            }
+        }else {
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String sDate = formatter.format(new Date());
+            System.out.println(sDate);
+            List<Sch> schList = schService.getSchByDate(sDate);
+            model.addAttribute("schList",schList);
+            model.addAttribute("Msg" , "已预约过了，无法重复预约！");
+            return "patient/interviewAdd";
+        }
     }
     //根据日期或者时间查询医生排班
     @RequestMapping(value = "/Sch" , method = RequestMethod.POST)
@@ -54,6 +83,5 @@ public class InterviewController {
         interviewService.delInterviewById(id);
         return "redirect:/InterviewShow";
     }
-
 
 }

@@ -45,4 +45,11 @@ public interface SchMapper {
      * @return
      */
     Sch getSchByTimeAndDid(@Param("iDate") String iDate,@Param("iTime") String iTime,@Param("dId") Integer dId);
+
+    /**
+     * 根据日期获取大于等于日期的医生排班信息
+     * @param sDate
+     * @return
+     */
+    List<Sch> getSchByDate(@Param("iDate") String sDate);
 }

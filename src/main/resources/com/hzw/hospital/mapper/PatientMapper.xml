@@ -24,18 +24,7 @@
       #{pName,jdbcType=VARCHAR}, #{pSex,jdbcType=VARCHAR}, #{pAge,jdbcType=INTEGER}, 
       #{pNum,jdbcType=CHAR}, #{pMed,jdbcType=VARCHAR}, #{pIll,jdbcType=VARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="com.hzw.hospital.bean.Patient" >
-    update patient
-    set P_username = #{pUsername,jdbcType=VARCHAR},
-      P_pwd = #{pPwd,jdbcType=VARCHAR},
-      P_name = #{pName,jdbcType=VARCHAR},
-      P_sex = #{pSex,jdbcType=VARCHAR},
-      P_age = #{pAge,jdbcType=INTEGER},
-      P_num = #{pNum,jdbcType=CHAR},
-      P_med = #{pMed,jdbcType=VARCHAR},
-      P_ill = #{pIll,jdbcType=VARCHAR}
-    where P_id = #{pId,jdbcType=INTEGER}
-  </update>
+
 
   <select id="selectAll" resultMap="BaseResultMap" >
     select P_id, P_username, P_pwd, P_name, P_sex, P_age, P_num, P_med, P_ill
@@ -54,4 +43,17 @@
     from patient
     where P_id = #{pId,jdbcType=INTEGER}
   </select>
+<!--  int updatePatient(Patient patient);-->
+  <update id="updatePatient" parameterType="com.hzw.hospital.bean.Patient" >
+    update patient
+    set P_username = #{pUsername,jdbcType=VARCHAR},
+      P_pwd = #{pPwd,jdbcType=VARCHAR},
+      P_name = #{pName,jdbcType=VARCHAR},
+      P_sex = #{pSex,jdbcType=VARCHAR},
+      P_age = #{pAge,jdbcType=INTEGER},
+      P_num = #{pNum,jdbcType=CHAR},
+      P_med = #{pMed,jdbcType=VARCHAR},
+      P_ill = #{pIll,jdbcType=VARCHAR}
+    where P_id = #{pId,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -1,6 +1,7 @@
 package com.hzw.hospital.mapper;
 
 import com.hzw.hospital.bean.Interview;
+import com.hzw.hospital.bean.Patient;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -45,4 +46,14 @@ public interface InterviewMapper {
      * @return
      */
     boolean delInterview(@Param("id") Integer id);
+
+    /**
+     * 根据预约患者 预约时间 预约医生 查询预约信息
+     * @param pId
+     * @param schDate
+     * @param schTime
+     * @param dId
+     * @return
+     */
+    Interview getInterviewByPidIdateItimeDid(@Param("pId") Integer pId,@Param("iDate") String schDate,@Param("iTime") String schTime,@Param("dId") Integer dId);
 }

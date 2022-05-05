@@ -48,7 +48,7 @@
         <div class="col-md-8">
             <h1>北理珠医院预约挂号系统</h1>
         </div>
-        <div class="col-md-2 col-md-offset-2">
+        <div class="col-md-2 col-md-offset-2" style="padding-top: 20px">
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#login">
                 登录
             </button>
@@ -69,5 +69,12 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        if("[[${Msg}]]" != null && "[[${Msg}]]" !== ""){
+            alert("[[${Msg}]]");
+        }
+    });
+</script>
 </body>
 </html>

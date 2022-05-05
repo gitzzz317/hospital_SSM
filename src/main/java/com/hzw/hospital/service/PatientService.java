@@ -13,4 +13,12 @@ public class PatientService {
     public Patient selectPatientByUsernameAndPwd(String pUsername, String pPwd) {
         return patientMapper.selectPatientByUsernameAndPwd(pUsername, pPwd);
     }
+
+    public int updatePatient(Patient patient) {
+        return patientMapper.updatePatient(patient);
+    }
+
+    public Patient getPatientById(Integer pId) {
+        return patientMapper.getPatientById(pId);
+    }
 }

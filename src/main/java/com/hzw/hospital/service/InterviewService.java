@@ -6,6 +6,7 @@ import com.hzw.hospital.mapper.InterviewMapper;
 import com.hzw.hospital.mapper.SchMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,11 +20,12 @@ public class InterviewService {
         return interviewMapper.getInterviewByPid(pId);
     }
 
+    @Transactional
     public void addInterview(Interview interview,Integer schId , Integer schBooked) {
         interviewMapper.addInterview(interview);
         schMapper.updateSchBookedBySchId(schId , schBooked+1);
     }
-
+    @Transactional
     public void delInterviewById(Integer id) {
         //1.根据预约id查询预约信息
         Interview interview = interviewMapper.getInterviewById(id);
@@ -35,4 +37,7 @@ public class InterviewService {
         schMapper.updateSchBookedBySchId(sch.getSchId(),sch.getSchBooked()-1);
     }
 
+    public Interview getInterviewByPidIdateItimeDid(Integer pId, String schDate, String schTime, Integer dId) {
+        return interviewMapper.getInterviewByPidIdateItimeDid(pId,schDate,schTime,dId);
+    }
 }

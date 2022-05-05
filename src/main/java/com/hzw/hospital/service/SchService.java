@@ -20,4 +20,8 @@ public class SchService {
     public List<Sch> getSchByDateOrTime(String searchDate, String searchTime) {
         return schMapper.getSchByDateOrTime(searchDate,searchTime);
     }
+
+    public List<Sch> getSchByDate(String sDate) {
+        return schMapper.getSchByDate(sDate);
+    }
 }

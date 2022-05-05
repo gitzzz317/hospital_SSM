@@ -67,4 +67,10 @@
     delete from interview
     where I_id = #{id}
   </delete>
+<!--  Patient getInterviewByPidIdateItimeDid(@Param("pId") Integer pId,@Param("iDate") String schDate,@Param("iTime") String schTime,@Param("dId") Integer dId);-->
+  <select id="getInterviewByPidIdateItimeDid" resultMap="BaseResultMap">
+    select *
+    from interview
+    where P_id = #{pId} and I_date = #{iDate} and I_time = #{iTime} and D_id = #{dId}
+  </select>
 </mapper>

@@ -46,6 +46,7 @@
     from doctor
   </select>
 
+
 <!--  Doctor getDoctorById(@Param("dId") Integer dId);-->
   <select id="getDoctorById" resultMap="BaseResultMap" >
     select *

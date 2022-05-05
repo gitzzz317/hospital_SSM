@@ -76,4 +76,10 @@
           and SCH_time = #{iTime}
           and D_id = #{dId}
     </select>
+<!--  List<Sch> getSchByDate(@Param("iDate") String sDate);-->
+  <select id="getSchByDate" resultMap="BaseResultMap">
+        select *
+        from sch
+        where SCH_date >= #{iDate}
+    </select>
 </mapper>

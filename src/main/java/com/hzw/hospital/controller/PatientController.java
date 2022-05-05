@@ -26,6 +26,7 @@ public class PatientController {
         if (patient != null) {
             //将登录的用户共享到session域
             session.setAttribute("Logined_User", patient);
+            session.removeAttribute("Msg");
             //跳转患者主页
             return "patient/index";
         } else {
